@@ -25,8 +25,8 @@ const JapaneseMap = () => {
   const colorBand = d3
     .scaleSequential(
       d3.interpolateRgbBasis([
-        "#93e1d8",
-        "#ddfff7",
+        "#00eaea",
+        "#d3f3ee",
         "#fcd581",
         "#d52941",
         "#990d35"
@@ -44,13 +44,23 @@ const JapaneseMap = () => {
   const paths = mapData.features.map((feature: Prefecture) => {
     const { id } = feature;
     const prefPath = path(feature as Feature) || "";
-    const temp = (tempData as any)[feature.properties.NAME_JP]["2000"][0];
+    const pref = (tempData as any)[feature.properties.NAME_JP];
+
+    const year = "1992";
+    const month = 3;
+    let temp = null;
+
+    if (pref[year] && pref[year][month]) {
+      temp = pref[year][month];
+    }
+
+    const fill = temp === null ? "grey" : colorBand(temp);
 
     return (
       <path
         d={prefPath}
         key={id}
-        fill={colorBand(temp)}
+        fill={fill}
         className={styles.prefecture}
       ></path>
     );
