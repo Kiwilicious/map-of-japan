@@ -1,0 +1,8 @@
+.prefecture {
+  stroke: #c3c3c3;
+  stroke-width: 0.5px;
+}
+
+.prefecture:hover {
+  fill: plum;
+}
