@@ -3,8 +3,8 @@ import * as d3 from "d3";
 import { Feature } from "geojson";
 import styles from "./style.module.css";
 
-import mapData from "../data/jp_prefs.json";
-import tempData from "../data/formatted.json";
+import mapData from "../../data/jp_prefs.json";
+import tempData from "../../data/formatted.json";
 
 interface Prefecture {
   type: string;
