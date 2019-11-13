@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import * as d3 from "d3";
 import { Feature } from "geojson";
 import styles from "./style.module.css";
 
 import mapData from "../../data/jp_prefs.json";
 import tempData from "../../data/formatted.json";
+
+import { DateContext } from "../context/DateContext";
 
 interface Prefecture {
   type: string;
@@ -21,6 +23,7 @@ interface Prefecture {
 }
 
 const JapaneseMap = () => {
+  const [currentDate] = useContext(DateContext);
   const { minTemperature, maxTemperature } = tempData;
   const colorBand = d3
     .scaleSequential(
@@ -46,8 +49,8 @@ const JapaneseMap = () => {
     const prefPath = path(feature as Feature) || "";
     const pref = (tempData as any)[feature.properties.NAME_JP];
 
-    const year = "1992";
-    const month = 3;
+    const year = currentDate.year;
+    const month = currentDate.month;
     let temp = null;
 
     if (pref[year] && pref[year][month]) {
