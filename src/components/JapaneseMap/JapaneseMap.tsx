@@ -50,7 +50,7 @@ const JapaneseMap = () => {
     const pref = (tempData as any)[feature.properties.NAME_JP];
 
     const year = currentDate.year;
-    const month = currentDate.month;
+    const month = currentDate.month - 1;
     let temp = null;
 
     if (pref[year] && pref[year][month]) {
