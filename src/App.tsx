@@ -4,6 +4,13 @@ import styled from "styled-components";
 import DateProvider from "./components/context/DateContext";
 import JapaneseMap from "./components/JapaneseMap/JapaneseMap";
 import MapSlider from "./components/MapSlider/MapSlider";
+import InfoPanel from "./components/InfoPanel/InfoPanel";
+
+const AppContent = styled.div`
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+`;
 
 const MapContainer = styled.div`
   align-items: center;
@@ -15,10 +22,13 @@ const MapContainer = styled.div`
 const App: React.FC = () => {
   return (
     <DateProvider>
-      <MapContainer>
-        <JapaneseMap />
-        <MapSlider />
-      </MapContainer>
+      <AppContent>
+        <MapContainer>
+          <JapaneseMap />
+          <MapSlider />
+        </MapContainer>
+        <InfoPanel />
+      </AppContent>
     </DateProvider>
   );
 };

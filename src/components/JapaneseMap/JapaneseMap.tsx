@@ -2,11 +2,10 @@ import React, { useContext } from "react";
 import * as d3 from "d3";
 import { Feature } from "geojson";
 import styles from "./style.module.css";
+import { DateContext } from "../context/DateContext";
 
 import mapData from "../../data/jp_prefs.json";
 import tempData from "../../data/formatted.json";
-
-import { DateContext } from "../context/DateContext";
 
 interface Prefecture {
   type: string;
