@@ -4,8 +4,8 @@ import { Feature } from "geojson";
 import styles from "./style.module.css";
 import { DateContext } from "../context/DateContext";
 
-import mapData from "../../data/jp_prefs.json";
-import tempData from "../../data/formatted.json";
+import mapData from "../../data/jp_pref_geodata.json";
+import tempData from "../../data/jp_pref_temps.json";
 
 interface Prefecture {
   type: string;

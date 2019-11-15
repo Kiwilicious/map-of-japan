@@ -4,7 +4,7 @@ import Slider, { createSliderWithTooltip } from "rc-slider";
 import "rc-slider/assets/index.css";
 import { DateContext } from "../context/DateContext";
 
-import tempData from "../../data/formatted.json";
+import tempData from "../../data/jp_pref_temps.json";
 
 const Container = styled.div`
   margin: 10px 0;
