@@ -36,7 +36,7 @@ function onSliderMove(sliderValue: number, dispatch: any) {
 }
 
 const MapSlider = () => {
-  const [currentDate, dispatch] = useContext(DateContext);
+  const dispatch = useContext(DateContext)[1];
 
   return (
     <Container>
