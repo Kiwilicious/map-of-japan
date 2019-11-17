@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import styled from "styled-components";
-import DateProvider from "./components/context/DateContext";
+import MapProvider from "./components/context/MapContext";
 import JapaneseMap from "./components/JapaneseMap/JapaneseMap";
 import MapSlider from "./components/MapSlider/MapSlider";
 import InfoPanel from "./components/InfoPanel/InfoPanel";
@@ -21,7 +21,7 @@ const MapContainer = styled.div`
 
 const App: React.FC = () => {
   return (
-    <DateProvider>
+    <MapProvider>
       <AppContent>
         <MapContainer>
           <JapaneseMap />
@@ -29,7 +29,7 @@ const App: React.FC = () => {
         </MapContainer>
         <InfoPanel />
       </AppContent>
-    </DateProvider>
+    </MapProvider>
   );
 };
 

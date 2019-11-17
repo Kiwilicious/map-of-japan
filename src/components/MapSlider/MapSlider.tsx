@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import Slider, { createSliderWithTooltip } from "rc-slider";
 import "rc-slider/assets/index.css";
-import { DateContext } from "../context/DateContext";
+import { MapContext } from "../context/MapContext";
 
 import tempData from "../../data/jp_pref_temps.json";
 
@@ -36,7 +36,7 @@ function onSliderMove(sliderValue: number, dispatch: any) {
 }
 
 const MapSlider = () => {
-  const dispatch = useContext(DateContext)[1];
+  const dispatch = useContext(MapContext)[1];
 
   return (
     <Container>
