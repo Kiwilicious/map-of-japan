@@ -1,5 +1,6 @@
 import React, { useContext, MouseEvent } from "react";
 import * as d3 from "d3";
+import d3L from "d3-svg-legend";
 import { Feature } from "geojson";
 import styles from "./style.module.css";
 import { MapContext } from "../context/MapContext";
@@ -33,10 +34,18 @@ interface PrefData {
   };
 }
 
+function createRange(start: number, stop: number, step = 1) {
+  const range = [];
+  for (let i = start; i <= stop; i += step) {
+    range.push(i);
+  }
+  return range;
+}
+
 const JapaneseMap = () => {
   const [mapContextData, dispatch] = useContext(MapContext);
   const { minTemperature, maxTemperature } = tempData;
-  const colorBand = d3
+  const scale = d3
     .scaleSequential(
       d3.interpolateRgbBasis([
         "#00eaea",
@@ -71,7 +80,7 @@ const JapaneseMap = () => {
       temp = pref[year][month];
     }
 
-    const fill = temp === null ? "grey" : colorBand(temp);
+    const fill = temp === null ? "grey" : scale(temp);
 
     return (
       <path
@@ -109,10 +118,42 @@ const JapaneseMap = () => {
     );
   });
 
+  const createLegend = () => {
+    // setTimeout to run the function after view is rendered
+    setTimeout(() => {
+      const scale = d3
+        .scaleSequential(
+          d3.interpolateRgbBasis([
+            "#00eaea",
+            "#d3f3ee",
+            "#fcd581",
+            "#d52941",
+            "#990d35"
+          ])
+        )
+        .domain([minTemperature, maxTemperature]);
+      const cells = createRange(minTemperature, maxTemperature, 5);
+      const legendSequential = d3L
+        .legendColor()
+        .shapeWidth(50)
+        .cells(cells)
+        .orient("vertical")
+        .ascending(true)
+        .scale(scale);
+
+      d3.select("#legend").call(legendSequential as any);
+    }, 0);
+
+    return null;
+  };
+
+  createLegend();
+
   return (
     <>
       <svg viewBox="0 0 800 800" width="800px" height="800px">
         <g>{paths}</g>
+        <g id="legend" transform={"translate(100, 100)"}></g>
       </svg>
       <Tooltip />
     </>
