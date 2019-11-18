@@ -26,19 +26,18 @@ const DateContainer = styled.div`
   padding: 10px;
 `;
 
-const TempDataContainer = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  height: 800px;
+const GridContainer = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  grid-row-gap: 4px;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(16, 45px);
+  justify-content: space-between;
 `;
 
-const PrefTemp = styled.div`
-  border-bottom: 1px solid #c3c3c3;
-  border-bottom: 1px solid grey;
-  margin-bottom: 5px;
-  width: 100px;
+const GridItem = styled.div`
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
 `;
 
 const InfoPanel = () => {
@@ -66,17 +65,17 @@ const InfoPanel = () => {
       <DateContainer>
         {year}年{month}月
       </DateContainer>
-      <TempDataContainer>
+      <GridContainer>
         {currentTemps.map(data => (
-          <PrefTemp>
+          <GridItem>
             <div>{data[0]}</div>
             <div>
               {data[1]}
               {data[1] !== "N/A" && <span> &deg;C</span>}
             </div>
-          </PrefTemp>
+          </GridItem>
         ))}
-      </TempDataContainer>
+      </GridContainer>
     </InfoPanelContainer>
   );
 };

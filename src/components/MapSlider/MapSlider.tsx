@@ -7,7 +7,7 @@ import { MapContext } from "../context/MapContext";
 import tempData from "../../data/jp_pref_temps.json";
 
 const Container = styled.div`
-  margin: 10px 0;
+  margin-top: 15px;
   padding: 0 20px;
   width: 100%;
 `;

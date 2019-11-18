@@ -7,7 +7,7 @@ import MapSlider from "./components/MapSlider/MapSlider";
 import InfoPanel from "./components/InfoPanel/InfoPanel";
 
 const AppContent = styled.div`
-  margin-top: 50px;
+  margin: 50px 0 20px;
   display: flex;
   justify-content: center;
 `;
