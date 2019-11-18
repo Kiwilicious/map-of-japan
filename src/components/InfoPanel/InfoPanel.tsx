@@ -66,8 +66,8 @@ const InfoPanel = () => {
         {year}年{month}月
       </DateContainer>
       <GridContainer>
-        {currentTemps.map(data => (
-          <GridItem>
+        {currentTemps.map((data, i) => (
+          <GridItem key={`${data[0]}${i}}`}>
             <div>{data[0]}</div>
             <div>
               {data[1]}

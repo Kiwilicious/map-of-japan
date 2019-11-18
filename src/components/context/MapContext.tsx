@@ -40,7 +40,7 @@ export const reducer = (state: MapState, action: MapActions) => {
   }
 };
 
-export const MapContext = React.createContext({} as any);
+export const MapContext = React.createContext([] as any);
 
 const DateProvider: React.FC = ({ children }) => {
   const contextValue = useReducer(reducer, initialState);
