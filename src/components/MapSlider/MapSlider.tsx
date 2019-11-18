@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Slider, { createSliderWithTooltip } from "rc-slider";
 import "rc-slider/assets/index.css";
 import { MapContext } from "../context/MapContext";
+import useInterval from "../hooks/UseContext";
 
 import tempData from "../../data/jp_pref_temps.json";
 
@@ -35,8 +36,32 @@ function onSliderMove(sliderValue: number, dispatch: any) {
   dispatch({ type: "setDate", payload: { year, month } });
 }
 
+function mappedValue(date: any) {
+  return (date.year - minYear + 1) * 12 + date.month;
+}
+
 const MapSlider = () => {
-  const dispatch = useContext(MapContext)[1];
+  const [mapContextData, dispatch] = useContext(MapContext);
+  const [start, stop] = useInterval(tick, 500);
+
+  function tick() {
+    let newMonth = mapContextData.month + 1;
+    let newYear = mapContextData.year;
+    if (newMonth > 12) {
+      newMonth = 1;
+      newYear++;
+    }
+    if (newYear > tempData.maxYear) {
+      newYear = tempData.minYear;
+    }
+
+    dispatch({
+      type: "setDate",
+      payload: { year: newYear, month: newMonth }
+    });
+  }
+
+  start();
 
   return (
     <Container>
@@ -45,7 +70,10 @@ const MapSlider = () => {
         max={mappedMax}
         tipFormatter={tipFormatter}
         onChange={val => onSliderMove(val, dispatch)}
+        value={mappedValue(mapContextData)}
       />
+      <button onClick={start}>start</button>
+      <button onClick={stop}>stop</button>
     </Container>
   );
 };
