@@ -60,7 +60,7 @@ function onSliderMove(sliderValue: number, dispatch: any) {
 }
 
 function mappedValue(date: any) {
-  return (date.year - minYear + 1) * 12 + date.month;
+  return (date.year - minYear) * 12 + date.month;
 }
 
 const MapSlider = () => {
@@ -100,6 +100,7 @@ const MapSlider = () => {
         tipFormatter={tipFormatter}
         onChange={val => onSliderMove(val, dispatch)}
         marks={marks}
+        value={mappedValue(mapContextData)}
       />
     </Container>
   );
