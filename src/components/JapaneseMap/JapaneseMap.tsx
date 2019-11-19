@@ -4,7 +4,6 @@ import d3L from "d3-svg-legend";
 import { Feature } from "geojson";
 import styles from "./style.module.css";
 import { MapContext } from "../context/MapContext";
-import Tooltip from "./Tooltip/Tooltip";
 
 import mapData from "../../data/jp_pref_geodata.json";
 import tempData from "../../data/jp_pref_temps.json";
@@ -155,7 +154,6 @@ const JapaneseMap = () => {
         <g>{paths}</g>
         <g id="legend" transform={"translate(100, 100)"}></g>
       </svg>
-      <Tooltip />
     </>
   );
 };
