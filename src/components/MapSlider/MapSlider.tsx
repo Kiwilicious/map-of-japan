@@ -70,7 +70,6 @@ const MapSlider = () => {
         max={mappedMax}
         tipFormatter={tipFormatter}
         onChange={val => onSliderMove(val, dispatch)}
-        value={mappedValue(mapContextData)}
       />
       <button onClick={start}>start</button>
       <button onClick={stop}>stop</button>
