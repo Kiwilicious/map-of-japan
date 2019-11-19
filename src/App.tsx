@@ -5,7 +5,7 @@ import MapProvider from "./components/context/MapContext";
 import JapaneseMap from "./components/JapaneseMap/JapaneseMap";
 import MapSlider from "./components/MapSlider/MapSlider";
 import InfoPanel from "./components/InfoPanel/InfoPanel";
-import Tooltip from "./components/JapaneseMap/Tooltip/Tooltip";
+import Tooltip from "./components/Tooltip/Tooltip";
 
 const AppContent = styled.div`
   margin: 50px 0 20px;
