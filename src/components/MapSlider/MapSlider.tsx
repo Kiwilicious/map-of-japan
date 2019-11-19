@@ -61,8 +61,6 @@ const MapSlider = () => {
     });
   }
 
-  start();
-
   return (
     <Container>
       <SliderWithTooltip
