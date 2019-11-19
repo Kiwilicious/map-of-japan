@@ -16,6 +16,7 @@ const MapContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
+  position: relative;
   width: 1000px;
 `;
 

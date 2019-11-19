@@ -13,6 +13,18 @@ const Container = styled.div`
   width: 100%;
 `;
 
+const StartButton = styled.button`
+  position: absolute;
+  bottom: 50px;
+  left: 20px;
+`;
+
+const StopButton = styled.button`
+  position: absolute;
+  bottom: 50px;
+  left: 70px;
+`;
+
 const SliderWithTooltip = createSliderWithTooltip(Slider);
 
 const { minYear, maxYear } = tempData;
@@ -24,6 +36,17 @@ function convertToDate(sliderValue: number) {
   const month = sliderValue % 12 === 0 ? 12 : sliderValue % 12;
 
   return [year, month];
+}
+
+function generateMarks() {
+  const range = (maxYear - minYear + 1) * 12;
+  const start = 7 * 12 + 1;
+  const step = 20 * 12;
+  const marks = [];
+  for (let i = start; i <= range; i += step) {
+    marks.push(i);
+  }
+  return marks;
 }
 
 function tipFormatter(sliderValue: number) {
@@ -44,6 +67,12 @@ const MapSlider = () => {
   const [mapContextData, dispatch] = useContext(MapContext);
   const [start, stop] = useInterval(tick, 500);
 
+  let markNumbers = generateMarks();
+  const marks = markNumbers.reduce((acc, markNum) => {
+    const [year] = convertToDate(markNum);
+    return { ...acc, [markNum]: { style: { color: "grey" }, label: year } };
+  }, {});
+
   function tick() {
     let newMonth = mapContextData.month + 1;
     let newYear = mapContextData.year;
@@ -63,14 +92,15 @@ const MapSlider = () => {
 
   return (
     <Container>
+      <StartButton onClick={start}>start</StartButton>
+      <StopButton onClick={stop}>stop</StopButton>
       <SliderWithTooltip
         min={1}
         max={mappedMax}
         tipFormatter={tipFormatter}
         onChange={val => onSliderMove(val, dispatch)}
+        marks={marks}
       />
-      <button onClick={start}>start</button>
-      <button onClick={stop}>stop</button>
     </Container>
   );
 };
